@@ -1,0 +1,149 @@
+
+#include <WiFi.h>
+#include <FirebaseESP32.h>
+
+//1. Define Tu Informacion De Firebase Y Tu Wifi
+#define FIREBASE_HOST "led-control-e3324.firebaseio.com" //Do not include https:// in FIREBASE_HOST
+#define FIREBASE_AUTH "GP0Lq9SDpdupVMUE6kdVsBeOj2S9ON6PyE3W3oyQ"
+#define WIFI_SSID "Samsung Galaxy S9+_4352"
+#define WIFI_PASSWORD "kqro9037"
+#include <FastLED.h>
+#define NUM_LEDS 50
+#define DATA_PIN 25
+
+
+ CRGB leds[NUM_LEDS];
+//2. Define FirebaseESP32 Objecto De Informacion
+FirebaseData firebaseRele1;
+FirebaseData firebaseRele2;
+FirebaseData firebaseRele3;
+FirebaseData firebaseRele4;
+FirebaseData colorLed;
+
+
+void setup()
+{
+  FastLED.addLeds<WS2811, DATA_PIN>(leds, NUM_LEDS);
+  Serial.begin(115200);
+  pinMode(13, OUTPUT);
+  pinMode(12, OUTPUT);
+  pinMode(14, OUTPUT);
+  pinMode(27, OUTPUT);
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+  Serial.print("Conectando A WIfi: ");
+  while (WiFi.status() != WL_CONNECTED)
+  {
+    Serial.print(".");
+    delay(300);
+  }
+  Serial.println();
+  Serial.print("Connectado con IP: ");
+  Serial.println(WiFi.localIP());
+  Serial.println();
+
+
+  //3. Agrega La Informacion De FireBase
+
+  Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);
+
+  //4. Agrega Reconection Si Se Pierde
+  Firebase.reconnectWiFi(true);
+
+  //5.Define La Informacion Para La BAse
+  if(Firebase.setString(firebaseRele1, "/Rele_1", "OFF") 
+        && Firebase.setString(firebaseRele2, "/Rele_2", "OFF")
+          && Firebase.setString(firebaseRele3, "/Rele_3", "OFF") 
+            && Firebase.setString(firebaseRele4, "/Rele_4", "OFF")
+             && Firebase.setString(colorLed, "/Color_Led", "RED"))
+  {
+     Serial.println("Se Insertaron con exito Con Exito");
+
+  }else{
+    Serial.print("Error Al Enviar, ");
+  }
+
+
+  //6.Recibir Informacion De Firebase
+  if(Firebase.getString(firebaseRele1, "/Rele_1") 
+      && Firebase.getString(firebaseRele2, "/Rele_2")
+        && Firebase.getString(firebaseRele3, "/Rele_3")
+          && Firebase.getString(firebaseRele4, "/Rele_4")
+            && Firebase.getString(colorLed, "/Color_Led"))
+  {
+    Serial.print("Informacion Recibida!!");
+  }else{
+    Serial.print("Error Al Retrivir Info, ");
+  }
+}
+
+void loop()
+{
+  Firebase.getString(firebaseRele1, "/Rele_1");
+  Firebase.getString(firebaseRele2, "/Rele_2");
+  Firebase.getString(firebaseRele3, "/Rele_3");
+  Firebase.getString(firebaseRele4, "/Rele_4");
+  Firebase.getString(colorLed, "/Color_Led");
+// Verificacion Del Rele 1
+    if (firebaseRele1.stringData() == "ON")
+   {                              
+      Serial.println("Rele 1 Activo");      
+      digitalWrite(13, LOW);                                  
+   }else if (firebaseRele1.stringData() == "OFF") {
+      Serial.println("Rele1 Inactivo");
+      digitalWrite(13, HIGH);
+    }
+    // Verificacion Del Rele 2
+       if (firebaseRele2.stringData() == "ON")
+       {                              
+          Serial.println("Rele 2 Activo");      
+          digitalWrite(12, LOW);                                  
+       }else if (firebaseRele2.stringData() == "OFF") {
+          Serial.println("Rele2 Inactivo");
+          digitalWrite(12, HIGH);
+        }
+          // Verificacion Del Rele 3
+           if (firebaseRele3.stringData() == "ON")
+           {                              
+              Serial.println("Rele 3 Activo");      
+              digitalWrite(14, LOW);                                  
+           }else if (firebaseRele3.stringData() == "OFF") {
+              Serial.println("Rele3 Inactivo");
+              digitalWrite(14, HIGH);
+            }
+             // Verificacion Del Rele 4
+               if (firebaseRele4.stringData() == "ON")
+               {                              
+                  Serial.println("Rele 4 Activo");      
+                  digitalWrite(27, LOW);                                  
+               }else if (firebaseRele4.stringData() == "OFF") {
+                  Serial.println("Rele4 Inactivo");
+                  digitalWrite(27, HIGH);
+                }
+                  // Loop De Los Leds
+                   if (colorLed.stringData() == "RED")
+                   {                              
+                        for(int dot = 0; dot < NUM_LEDS; dot++) { 
+                        leds[dot] = CRGB::Red;
+                        FastLED.show();
+                        leds[dot] = CRGB::Red;
+                        Serial.println("LEDS Rojos");
+                       
+                    }                                
+                    }else if (colorLed.stringData() == "BLUE") {
+                        for(int dot = 0; dot < NUM_LEDS; dot++) { 
+                        leds[dot] = CRGB::Blue;
+                        FastLED.show();
+                        leds[dot] = CRGB::Blue;
+                        Serial.println("LEDS AZULES");
+                        
+                        }
+                    }else if (colorLed.stringData() == "Green") {
+                        for(int dot = 0; dot < NUM_LEDS; dot++) { 
+                        leds[dot] = CRGB::Green;
+                        FastLED.show();
+                        leds[dot] = CRGB::Green;
+                        Serial.println("LEDS Verdes");
+                        }                      
+                    }
+          
+}
