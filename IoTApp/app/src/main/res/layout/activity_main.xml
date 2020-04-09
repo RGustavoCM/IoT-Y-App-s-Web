@@ -1,0 +1,82 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <Switch android:id="@+id/switch1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:switchMinWidth="56dp"
+    android:layout_marginLeft="150dp"
+    android:layout_marginTop="120dp"
+    android:text="Dispositivo 1:"
+    android:checked="true"
+    android:textOff="OFF"
+    android:textOn="ON"/>
+
+    <Switch android:id="@+id/switch2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:switchMinWidth="56dp"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="220dp"
+        android:text="Dispositivo 2:"
+        android:checked="true"
+        android:textOff="OFF"
+        android:textOn="ON"/>
+
+    <Switch android:id="@+id/switch3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:switchMinWidth="56dp"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="320dp"
+        android:text="Dispositivo 3:"
+        android:checked="true"
+        android:textOff="OFF"
+        android:textOn="ON"/>
+
+    <Switch android:id="@+id/switch4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:switchMinWidth="56dp"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="420dp"
+        android:text="Dispositivo 4:"
+        android:checked="true"
+        android:textOff="OFF"
+        android:textOn="ON"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="520dp"
+        android:text="Color De Leds" />
+
+    <Button
+        android:id="@+id/red"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="84dp"
+        android:layout_marginTop="620dp"
+        android:text="Rojo" />
+
+    <Button
+        android:id="@+id/blue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="168dp"
+        android:layout_marginTop="620dp"
+        android:text="Azul" />
+
+    <Button
+        android:id="@+id/green"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="252dp"
+        android:layout_marginTop="620dp"
+        android:text="Verde" />
+
+
+
+
+</RelativeLayout>

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "861334787084",
+    "firebase_url": "https://led-control-e3324.firebaseio.com",
+    "project_id": "led-control-e3324",
+    "storage_bucket": "led-control-e3324.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:861334787084:android:06ad36bcdf9bec0fbc8a29",
+        "android_client_info": {
+          "package_name": "com.utng.iotapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "861334787084-qt45h4veuic6jphr6gl4781lm8j4sk8p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.utng.iotapp",
+            "certificate_hash": "0ecf68408a83bddfea1672fdefae78a8b2451291"
+          }
+        },
+        {
+          "client_id": "861334787084-2odiim9pmk9tkg6qr76spf0nojk9073v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRcREldhefqQIOcyZrmshABcDrvoWx04U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "861334787084-2odiim9pmk9tkg6qr76spf0nojk9073v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
